@@ -126,6 +126,8 @@ Note: By default this Symfony installation is set to production mode, if you wan
 
 **! important**. If you make changes to the configuration files, you have to run `composer install --no-dev` again. 
 
+---
+
 ### How to use, server side
 There are 'commands' available to run the Discord bot subscribers.
 
@@ -138,6 +140,8 @@ Command to have a long-running-process to listen to commands from the Discord ch
 Command to have a process that validates the roles Discord users have agains the configuration (and removes/adds them if applicable). You can put this in a **cronjob**.
 
 	bin/console clever:discord:police
+
+---
 
 ### Configuration reference
 
@@ -198,6 +202,8 @@ Per alliance or corporation, indicate which roles must be added to the Discord m
 The Discord channel ID the bot will output some logging to (e.g. the 'police' log).
 
 -- Again. If you need help, contact me on Discord (see above).
+
+---
 
 ### Contributing
 Please! Make forks, pull requests etc. And let me know on Discord :)
