@@ -162,7 +162,7 @@ Application configuration.
 * Get EVE char/alli/corp IDs [here](https://evewho.com/) search, click, then look for the ID behind the 'Last Updated' text (small letters at the bottom).
 * [How-to](https://discordia.me/developer-mode) get Discord IDs
 
-#####`powered_by`
+##### `powered_by`
 
 If the `name` is `null`, the 'Powered by block will not be displayed'.
 
@@ -172,7 +172,7 @@ If the `name` is `null`, the 'Powered by block will not be displayed'.
 | `corporation_id` | A corporation id (optional, default `null`), not used if the `alliance_id` is filled |
 | `name` | Can be alli/corp name |
 
-#####`corporation_bulletins`
+##### `corporation_bulletins`
 An array of corporations that have a bulletin, and the EVE character IDs that can edit the bulletin.
 
 	 "corporation_bulletins": {
@@ -182,7 +182,7 @@ An array of corporations that have a bulletin, and the EVE character IDs that ca
       ]
     },
 
-#####`authorized_roles`
+##### `authorized_roles`
 An array of roles that need authorization. List **all** the roles here that you use in `alliance_roles` or `corporation_roles`. Example:
 
 	"authorized_roles": [
@@ -191,10 +191,10 @@ An array of roles that need authorization. List **all** the roles here that you 
       29123495323
     ],
 
-#####`alliance_roles` and `corporation_roles`
+##### `alliance_roles` and `corporation_roles`
 Per alliance or corporation, indicate which roles must be added to the Discord members.
 
-#####`bot_log_channel`
+##### `bot_log_channel`
 The Discord channel ID the bot will output some logging to (e.g. the 'police' log).
 
 -- Again. If you need help, contact me on Discord (see above).
