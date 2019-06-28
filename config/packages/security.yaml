@@ -1,0 +1,15 @@
+security:
+    providers:
+        user_provider:
+            id: App\Security\UserProvider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            provider: user_provider
+            anonymous: true
+            logout:
+                path: app_logout
+    access_control:
+        # - { path: ^/user, roles: ROLE_USER }

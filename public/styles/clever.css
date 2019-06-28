@@ -1,0 +1,193 @@
+body {
+    background-color: #EEEEEE;
+    font-size: 0.9rem;
+}
+
+.front-page {
+    text-align: center;
+}
+
+.logo {
+    margin: 10px 0px 20px;
+}
+
+.powered-by {
+    text-align: center;
+    padding: 0px 22px;
+    margin: 50px 0px;
+}
+
+.powered-by-image {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.powered-by-name {
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.has-background {
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: underline;
+}
+
+.sidebar {
+    border-right: 1px solid #eee;
+}
+
+.menu-button-static {
+    width: 100%;
+}
+
+.btn {
+    font-size: 0.9rem;
+}
+
+.menu-button, .menu-button-static {
+    padding: 10px 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.menu-button img, .menu-button-static img {
+    margin-right: 5px;
+    width: 32px;
+}
+
+.page-title img {
+    margin-right: 10px;
+    width: 48px;
+}
+
+.page-title {
+    font-size: 130%;
+}
+
+.modal-backdrop.show:not(:last-of-type) {
+    opacity: 0 !important;
+}
+
+.character-image img {
+    border-radius: 10%;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.corporation-image img, .alliance-image img {
+    padding: 5px;
+    border-radius: 10%;
+    width: 100%;
+}
+
+.character-info {
+    margin-bottom: 15px;
+}
+
+.character-content {
+    padding-top: 10px;
+}
+
+.character-menu {
+    width: 90%;
+}
+
+.character-menu a {
+    text-decoration: none;
+}
+
+.btn-light {
+    border: 1px dotted #ccc;
+}
+
+.corporation-bulletin td, .corporation-bulletin th {
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    vertical-align: top;
+}
+
+.corporation-bulletin table em {
+    font-size: 0.8rem;
+}
+
+.corporation-bulletin .tip {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.corporation-bulletin table {
+    margin-bottom: 20px;
+}
+
+.corporation-bulletin img[alt="width25%"] {
+    width: 25%;
+}
+
+.corporation-bulletin img[alt="width50%"] {
+    width: 50%;
+}
+
+.corporation-bulletin img[alt="width75%"] {
+    width: 75%;
+}
+
+.corporation-bulletin img[alt="width100%"] {
+    width: 100%;
+}
+
+.corporation-bulletin h1:not(:first-child) {
+    padding-top: 5px;
+}
+
+.corporation-bulletin h2:not(:first-child) {
+    padding-top: 5px;
+}
+
+.corporation-bulletin h3:not(:first-child) {
+    padding-top: 5px;
+}
+
+.corporation-bulletin h4:not(:first-child) {
+    font-size: 1.2rem;
+    padding-top: 5px;
+}
+
+#bulletin-edit-editor {
+    display: none;
+}
+
+.bulletin-edit-save {
+    display: none;
+    text-align: right;
+    float: right;
+    margin: 7px;
+    clear: both;
+
+    position: sticky;
+    z-index: 99;
+}
+
+.corporation-bulletin-edit-button, .corporation-bulletin-cancel-button {
+    text-align: right;
+    float: right;
+    margin: 2px;
+    clear: both;
+
+    position: sticky;
+    z-index: 99;
+}
+
+.corporation-bulletin-cancel-button {
+    display: none;
+}
+
+.editor-statusbar {
+    padding: 6px 10px !important;
+}

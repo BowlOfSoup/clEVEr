@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div>
+        Please copy-paste the following in a Discord channel:
+        <div>
+            <code>
+                !auth {{ token }}
+            </code>
+        </div>
+    </div>
+{% endblock %}
+

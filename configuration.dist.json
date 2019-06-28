@@ -1,0 +1,41 @@
+{
+  "clever_configuration": {
+
+    "powered_by" : {
+      "alliance_id": null,
+      "corporation_id": "SOME CORPORATION ID",
+      "name": null
+    },
+
+    "corporation_bulletins": {
+      "CORPORATION ID 1": [
+        "CHARACTER ID 1",
+        "CHARACTER ID 2"
+      ]
+    },
+
+    "authorized_roles": [
+      "SOME DISCORD ROLE ID"
+    ],
+
+    "alliance_roles": {
+      "ALLIANCE ID 1": [
+        "DISCORD ROLE ID 1",
+        "DISCORD ROLE ID 2"
+      ]
+    },
+
+    "corporation_roles": {
+      "CORPORATION ID 1": [
+        "DISCORD ROLE ID 1",
+        "DISCORD ROLE ID 2"
+      ],
+      "CORPORATION ID 2": [
+        "DISCORD ROLE ID 1",
+        "DISCORD ROLE ID 2"
+      ]
+    },
+
+    "bot_log_channel": "DISCORD CHANNEL ID"
+  }
+}

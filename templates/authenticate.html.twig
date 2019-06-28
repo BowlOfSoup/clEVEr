@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container front-page">
+        <div class="logo"><img src="images/clever.png" width="300px" alt="clEVEr logo"/></div>
+
+        <h2>clEVEr authentication</h2>
+        Push the button!
+
+        <br /><br />
+        <div>
+            <a href="https://login.eveonline.com/oauth/authorize/?response_type=code&redirect_uri={{ callbackUrl }}&client_id={{ clientId }}&scope={{ scope }}&state={{ uniqueState }}">
+                <img src="images/eve-sso-login-black-large.png" alt="EVE Authentication Button"/>
+            </a>
+        </div>
+
+        {% if poweredBy.name %}
+            <div class="powered-by">
+                {% if poweredBy.imageUrl %}
+                    <div class="powered-by-image"><img src="{{ poweredBy.imageUrl }}" alt="powered by image"/></div>
+                {% endif %}
+                <div class="powered-by-name">Powered by: <b>{{ poweredBy.name }}</b></div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
+

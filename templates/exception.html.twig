@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm text-center">
+                <img src="images/clever.jpg" width="400px" alt="clEVEr logo"/>
+
+                <h2>Something went wrong.</h2>
+                <div>{{ message }}</div>
+                <br /><div><a href="/">Back to index</a></div>
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+

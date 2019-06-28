@@ -1,0 +1,51 @@
+parameters:
+    locale: 'en'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Command\DiscordConsumerCommand:
+        $botToken: '%env(DISCORD_BOT_TOKEN)%'
+
+    App\Command\DiscordPoliceCommand:
+        $botToken: '%env(DISCORD_BOT_TOKEN)%'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Controller\IndexController:
+        $clientId: '%env(EVE_APP_CLIENT_ID)%'
+        $callbackUrl: '%env(EVE_APP_CALLBACK_URL)%'
+
+    App\Model\Configuration:
+        $cleverConfiguration: '%clever_configuration%'
+
+    App\Service\CharacterService:
+        $corporationRepository: '@app.corporation_repository'
+        $allianceRepository: '@app.alliance_repository'
+
+    App\Service\EveSsoService:
+        $clientId: '%env(EVE_APP_CLIENT_ID)%'
+        $clientSecret: '%env(EVE_APP_CLIENT_SECRET)%'
+
+    App\Subscriber\ExceptionSubscriber:
+        $environment: '%kernel.environment%'
+
+    app.corporation_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\Corporation
+
+    app.alliance_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\Alliance
