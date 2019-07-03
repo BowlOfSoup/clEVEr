@@ -78,6 +78,8 @@ To have your users login to the clEVEr portal you need to create an EVE applicat
 * `esi-corporations.read_starbases.v1`
 * `esi-corporations.read_structures.v1`
 * `esi-corporations.read_facilities.v1`
+* `esi-characters.read_fw_stats.v1`
+* `esi-corporations.read_fw_stats.v1`
 
 You'll need the 'Client ID' and the 'Secret Key' to be configured in the clEVEr application.
 
@@ -202,6 +204,21 @@ Per alliance or corporation, indicate which roles must be added to the Discord m
 The Discord channel ID the bot will output some logging to (e.g. the 'police' log).
 
 -- Again. If you need help, contact me on Discord (see above).
+
+---
+
+### Help!
+#### Roles are not being set?
+* Make sure that the Discord bot has the rights mentioned in paragraph 2 (kick and re-invite the bot)
+* Make sure the Discord bot role is as high as possible (play with bot role permissions)
+* Make sure the Discord role ID you want to add to a user is correct
+* Make sure the Discord role is wrapped in quotes in the configuration: `"29348489234712382"`
+* Make sure the Discord bot has access to the channels where the `!auth` command can be entered
+* If there is an error, it should display in the console/supervisor-log where you started the bot.
+
+#### The 'police' command does not log in the bot-log-channel
+* See previous question ;)
+* If there was an error, it should be mentioned in the log channel
 
 ---
 

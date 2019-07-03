@@ -8,7 +8,6 @@ use App\Model\Configuration;
 use App\Repository\CharacterRepository;
 use App\Service\CharacterService;
 use CharlotteDunois\Yasmin\Client;
-use CharlotteDunois\Yasmin\HTTP\DiscordAPIException;
 use CharlotteDunois\Yasmin\Models\Message;
 use React\EventLoop\Factory;
 use Symfony\Component\Console\Command\Command;
@@ -113,7 +112,16 @@ class DiscordConsumerCommand extends Command
             }
         });
 
-        $client->login($this->botToken)->done();
+        try {
+            $client->login($this->botToken)->done();
+        } catch (\Exception $e) {
+            $output->writeln(
+                sprintf('<error>%s; %s</error>',
+                    (new \DateTime())->format('Y-m-d H:i:s'),
+                    $e->getMessage()
+                )
+            );
+        }
         $loop->run();
     }
 
