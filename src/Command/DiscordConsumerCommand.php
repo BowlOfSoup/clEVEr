@@ -8,6 +8,7 @@ use App\Model\Configuration;
 use App\Repository\CharacterRepository;
 use App\Service\CharacterService;
 use CharlotteDunois\Yasmin\Client;
+use CharlotteDunois\Yasmin\HTTP\DiscordAPIException;
 use CharlotteDunois\Yasmin\Models\Message;
 use React\EventLoop\Factory;
 use Symfony\Component\Console\Command\Command;
@@ -163,27 +164,33 @@ class DiscordConsumerCommand extends Command
             return;
         }
 
-        $message->member->addRoles($allowedRoles)->done(
-            function () use ($message, $character) {
-                $this->output->writeln(
-                    sprintf('%s; Roles set for \'%s\' (%s)',
-                        (new \DateTime)->format('Y-m-d H:i:s'),
-                        $message->author->username,
-                        $character->getEveId()
-                    )
-                );
-            },
-            function ($error) use ($message, $character) {
-                $this->output->writeln(
-                    sprintf('<error>%s; Error when setting roles for \'%s\' (): "%s".</error>',
-                        (new \DateTime)->format('Y-m-d H:i:s'),
-                        $message->author->username,
-                        $character->getEveId(),
-                        $error
-                    )
-                );
-            }
-        );
+        foreach ($allowedRoles as $allowedRole) {
+            $message->member->addRole($allowedRole)->done(
+                function () use ($message, $character) {
+
+                    $this->output->writeln(
+                        sprintf('%s; Roles set for \'%s\' (%s)',
+                            (new \DateTime)->format('Y-m-d H:i:s'),
+                            $message->author->username,
+                            $character->getEveId()
+                        )
+                    );
+                },
+                function ($error) use ($message, $character) {
+                    if (!$error instanceof \Exception) {
+                        return;
+                    }
+                    $this->output->writeln(
+                        sprintf('<error>%s; Error when setting roles for \'%s\' (%s): "%s".</error>',
+                            (new \DateTime)->format('Y-m-d H:i:s'),
+                            $message->author->username,
+                            $character->getEveId(),
+                            $error->getMessage()
+                        )
+                    );
+                }
+            );
+        }
 
         $message->reply('Authentication successful: Discord roles set :sunglasses:');
     }

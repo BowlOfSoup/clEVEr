@@ -8,7 +8,6 @@ use App\Entity\Character;
 use App\Model\Configuration;
 use App\Repository\CharacterRepository;
 use App\Service\CharacterService;
-use App\Service\RefreshAuthorization;
 use CharlotteDunois\Yasmin\Client;
 use CharlotteDunois\Yasmin\Models\GuildMember;
 use React\EventLoop\Factory;
@@ -134,19 +133,24 @@ class DiscordPoliceCommand extends Command
      */
     private function addRoles(array $rolesToAdd, GuildMember $member, Client $client)
     {
-        $member->addRoles($rolesToAdd)->done(
-            function () use ($member, $client) {
-                $client->channels->get($this->configuration->getBotLogChannel())->send(sprintf('Roles added for \'%s\'.', $member->user->username));
-            },
-            function ($error) use ($member, $client) {
-                $client->channels->get($this->configuration->getBotLogChannel())->send(
-                    sprintf('Error in adding roles for \'%s\': %s',
-                        $member->user->username,
-                        $error
-                    )
-                );
-            }
-        );
+        foreach ($rolesToAdd as $roleToAdd) {
+            $member->addRole($roleToAdd)->done(
+                function () use ($member, $client) {
+                    $client->channels->get($this->configuration->getBotLogChannel())->send(sprintf('Roles added for \'%s\'.', $member->user->username));
+                },
+                function ($error) use ($member, $client) {
+                    if (!$error instanceof \Exception) {
+                        return;
+                    }
+                    $client->channels->get($this->configuration->getBotLogChannel())->send(
+                        sprintf('Error in adding roles for \'%s\': %s',
+                            $member->user->username,
+                            $error->getMessage()
+                        )
+                    );
+                }
+            );
+        }
     }
 
     /**
@@ -156,18 +160,23 @@ class DiscordPoliceCommand extends Command
      */
     private function removeRoles(array $rolesToRemove, GuildMember $member, Client $client)
     {
-        $member->removeRoles($rolesToRemove)->done(
-            function () use ($member, $client) {
-                $client->channels->get($this->configuration->getBotLogChannel())->send(sprintf('Roles removed for \'%s\'.', $member->user->username));
-            },
-            function ($error) use ($member, $client) {
-                $client->channels->get($this->configuration->getBotLogChannel())->send(
-                    sprintf('Error in removing roles for \'%s\': %s',
-                        $member->user->username,
-                        $error
-                    )
-                );
-            }
-        );
+        foreach ($rolesToRemove as $roleToRemove) {
+            $member->removeRole($roleToRemove)->done(
+                function () use ($member, $client) {
+                    $client->channels->get($this->configuration->getBotLogChannel())->send(sprintf('Roles removed for \'%s\'.', $member->user->username));
+                },
+                function ($error) use ($member, $client) {
+                    if (!$error instanceof \Exception) {
+                        return;
+                    }
+                    $client->channels->get($this->configuration->getBotLogChannel())->send(
+                        sprintf('Error in removing roles for \'%s\': %s',
+                            $member->user->username,
+                            $error->getMessage()
+                        )
+                    );
+                }
+            );
+        }
     }
 }
