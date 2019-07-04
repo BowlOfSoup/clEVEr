@@ -111,16 +111,26 @@ Go to 'OAuth2' (in the left-side menu).
 Now click the 'copy' button in the middle of the page. Open the link in your browser (addressbar) to invite the bot in your Discord.
 
 #### 3. Install clEVEr on a server
-You can `git clone` this repository and make a vhost on your machine that points to the `/public` directory of the installation. **If you need help, contact me** on Discord (see above).
+**If you need help, contact me** on Discord (see above).
 
-When cloned, copy the dummy configuration files:
+- You can `git clone` this repository
 
-	cp configuration.dist.json configuration.local.json
-	cp .env .env.local
+```
+git clone https://github.com/BowlOfSoup/clEVEr.git --branch RELEASE_NAME
+git clone https://github.com/BowlOfSoup/clEVEr.git --branch 1.0.0
+```
+
+- Make a vhost on your machine that points to the `/public` directory of the installation.
+
+- When cloned, copy the dummy configuration files:
+
+```
+cp configuration.dist.json configuration.local.json
+cp .env .env.local
+```
 	
-**Edit the configuration values!** See below.
-	
-Now install:
+**Important! Edit the configuration values!** See below.
+After that, install with:
 
 	composer install --no-dev
 	
