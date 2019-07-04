@@ -60,6 +60,12 @@ class IndexController extends AbstractController
         $character = $this->getUser();
 
         return $this->render('character.html.twig', [
+            'clientId' => $this->clientId,
+            'callbackUrl' => $this->callbackUrl,
+            'uniqueState' => uniqid(),
+            'scope' => 'publicData esi-calendar.read_calendar_events.v1 esi-skills.read_skillqueue.v1 esi-wallet.read_character_wallet.v1 esi-killmails.read_killmails.v1 esi-planets.manage_planets.v1 esi-mail.organize_mail.v1 esi-mail.read_mail.v1 esi-industry.read_character_jobs.v1 esi-industry.read_character_mining.v1 esi-industry.read_corporation_mining.v1 esi-characters.read_corporation_roles.v1 esi-killmails.read_corporation_killmails.v1 esi-corporations.read_contacts.v1 esi-corporations.read_corporation_membership.v1 esi-corporations.read_starbases.v1 esi-corporations.read_structures.v1 esi-corporations.read_facilities.v1 esi-characters.read_fw_stats.v1 esi-corporations.read_fw_stats.v1',
+            'poweredBy' => $this->configurationService->getPoweredBy(),
+
             'character' => $character,
             'corporationConfigured' => $this->configurationService->isCharacterCorporationConfigured($character),
             'corporationBulletin' => (new \Parsedown())->parse($character->getCorporation()->getBulletin()),

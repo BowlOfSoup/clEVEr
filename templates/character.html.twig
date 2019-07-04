@@ -45,18 +45,24 @@
                         </div>
                     </a>
 
+                    <div>
+                        <a href="https://login.eveonline.com/oauth/authorize/?response_type=code&redirect_uri={{ callbackUrl }}&client_id={{ clientId }}&scope={{ scope }}&state={{ uniqueState }}">
+                            <img src="images/eve-sso-login-black-large.png" alt="EVE Authentication Button"/>
+                        </a>
+                    </div>
+
                 </div>
             </div>
             <div class="col-4 col-sm-9 character-content">
                 <div>
                     {%  if isAllowedToEditTheBulletin %}
                         <div class="btn btn-light menu-button corporation-bulletin-edit-button">
-                            <span><img src="{{ asset('images/edit.png') }}" alt="skill queue"/></span>
+                            <span><img src="{{ asset('images/edit.png') }}" alt="edit bulletin"/></span>
                             <span>Edit bulletin</span>
                         </div>
 
                         <div class="btn btn-light menu-button corporation-bulletin-cancel-button">
-                            <span><img src="{{ asset('images/edit.png') }}" alt="skill queue"/></span>
+                            <span><img src="{{ asset('images/edit.png') }}" alt="cancel edit"/></span>
                             <span>Cancel editing</span>
                         </div>
                     {% endif %}
