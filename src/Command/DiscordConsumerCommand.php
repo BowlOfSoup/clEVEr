@@ -122,6 +122,7 @@ class DiscordConsumerCommand extends Command
                 )
             );
         }
+
         $loop->run();
     }
 

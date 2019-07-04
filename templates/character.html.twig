@@ -26,6 +26,8 @@
                 </div>
 
                 <div class="mt-3 text-center">
+                    {% include 'elements/user_switcher.html.twig' %}
+
                     {% if corporationConfigured %}
                         {#<div class="btn btn-light menu-button-static">#}
                             {#<span><img src="{{ asset('images/bulletin.png') }}" alt="corporation bulletin"/></span>#}
@@ -49,17 +51,7 @@
             </div>
             <div class="col-4 col-sm-9 character-content">
                 <div>
-                    {%  if isAllowedToEditTheBulletin %}
-                        <div class="btn btn-light menu-button corporation-bulletin-edit-button">
-                            <span><img src="{{ asset('images/edit.png') }}" alt="skill queue"/></span>
-                            <span>Edit bulletin</span>
-                        </div>
-
-                        <div class="btn btn-light menu-button corporation-bulletin-cancel-button">
-                            <span><img src="{{ asset('images/edit.png') }}" alt="skill queue"/></span>
-                            <span>Cancel editing</span>
-                        </div>
-                    {% endif %}
+                    {% include 'elements/bulletin_edit.html.twig' %}
 
                     <div class="character-info">
                         <h3>{{ character.name }}</h3>
@@ -71,45 +63,11 @@
 
                     {#{% include 'elements/menu_actions.html.twig' %}#}
 
-                    {% block content %}
-                    {% endblock %}
-
                     <hr />
 
-                    <div class="corporation-bulletin">
-                        {%  if isAllowedToEditTheBulletin %}
-                            <div id="bulletin-edit-editor">
-                                <div class="tip">
-                                    See <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">here</a> for a guide on how to write MarkDown.
-                                    <br /><br />
-
-                                    Size images by adding <code>width100%</code>, <code>75</code>, <code>50</code> or <code>25</code>.<br />
-                                    e.g. <code>![width100%](http://imageurl "title text")</code>
-                                </div>
-
-                                <div class="bulletin-edit-save">
-                                    <button type="button" id="bulletin-save-button" class="btn btn-success"
-                                            data-target="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}{{ path('corporation_bulletin') }}">
-                                        Save bulletin
-                                    </button>
-                                </div>
-
-                                <textarea id="bulletin-edit">{{ corporationBulletinRaw }}</textarea>
-                            </div>
-                            <div class="bulletin-edit-save">
-                                <button type="button" class="btn btn-success">Save bulletin</button>
-                            </div>
-                        {% endif %}
-
-                        <div class="bulletin-content">
-                            {%  if corporationBulletin %}
-                                {{ corporationBulletin|raw }}
-                            {% else %}
-                                There is currently no additional data available :)
-                            {% endif %}
-                        </div>
-                    </div>
-
+                    {% block content %}
+                        {% include 'elements/bulletin.html.twig' %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
@@ -126,4 +84,5 @@
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script src="{{ asset('scripts/discord_modal.js') }}"></script>
     <script src="{{ asset('scripts/bulletin.js') }}"></script>
+    <script src="{{ asset('scripts/switch_character.js') }}"></script>
 {% endblock %}

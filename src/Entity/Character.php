@@ -89,6 +89,14 @@ class Character implements UserInterface
     private $refreshToken;
 
     /**
+     * @var \App\Entity\Account
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="characters", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $account;
+
+    /**
      * @param int $eveId
      * @param string $name
      * @param \App\Entity\Corporation $corporation
@@ -326,5 +334,33 @@ class Character implements UserInterface
         $this->refreshToken = $refreshToken;
 
         return $this;
+    }
+
+    /**
+     * @return \App\Entity\Account|null
+     */
+    public function getAccount(): ?Account
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param \App\Entity\Account|null $account
+     *
+     * @return $this
+     */
+    public function setAccount(Account $account = null): Character
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAccount(): bool
+    {
+        return null !== $this->account;
     }
 }

@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\SpamException;
-use App\Service\Authenticator;
-use App\Service\CharacterService;
+use App\Service\CallbackService;
 use App\Service\SpamPreventionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,25 +17,19 @@ class CallbackController extends AbstractController
     /** @var \App\Service\SpamPreventionService */
     private $spamPreventionService;
 
-    /** @var \App\Service\Authenticator */
-    private $authenticator;
-
-    /** @var \App\Service\CharacterService */
-    private $characterService;
+    /** @var \App\Service\CallbackService */
+    private $callbackService;
 
     /**
      * @param \App\Service\SpamPreventionService $spamPreventionService
-     * @param \App\Service\Authenticator $authenticator
-     * @param \App\Service\CharacterService $characterService
+     * @param \App\Service\CallbackService $callbackService
      */
     public function __construct(
         SpamPreventionService $spamPreventionService,
-        Authenticator $authenticator,
-        CharacterService $characterService
+        CallbackService $callbackService
     ) {
         $this->spamPreventionService = $spamPreventionService;
-        $this->authenticator = $authenticator;
-        $this->characterService = $characterService;
+        $this->callbackService = $callbackService;
     }
 
     /**
@@ -65,13 +58,7 @@ class CallbackController extends AbstractController
             return $this->forward('App\Controller\IndexController::indexAction');
         }
 
-        $authorizationResponse = $this->authenticator->authenticateWithCallbackCode($callbackCode);
-        $characterId = $this->authenticator->verifyAndGetCharacterId($authorizationResponse->getAccessToken());
-
-        $character = $this->characterService->getCharacterById($characterId);
-        $character = $this->characterService->upsertCharacter($authorizationResponse, $characterId, $character);
-
-        $this->authenticator->authenticateCharacterAsUser($character);
+        $this->callbackService->handleCallbackFromEve($callbackCode);
 
         return $this->redirectToRoute('app_index');
     }

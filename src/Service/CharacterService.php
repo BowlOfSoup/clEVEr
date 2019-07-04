@@ -133,8 +133,11 @@ class CharacterService
      *
      * @return \App\Entity\Character
      */
-    public function upsertCharacter(AuthorizationResponse $authorizationResponse, int $characterId, Character $character = null): Character
-    {
+    public function upsertCharacter(
+        AuthorizationResponse $authorizationResponse,
+        int $characterId,
+        Character $character = null
+    ): Character {
         $esiCharacter = $this->eveEsiService->getCharacter($characterId, $authorizationResponse->getAccessToken());
         $corporationId = $esiCharacter['corporation_id'];
 
@@ -160,8 +163,7 @@ class CharacterService
             $this->setAuthorizationData($character, $authorizationResponse);
         }
 
-        $this->characterRepository->persist($character);
-        $this->characterRepository->flush($character);
+        $this->save($character);
 
         return $character;
     }
@@ -200,6 +202,32 @@ class CharacterService
             ->setAccessToken($authorizationResponse->getAccessToken())
             ->setTokenExpiryTime($authorizationResponse->getExpiryTime())
             ->setRefreshToken($authorizationResponse->getRefreshToken());
+    }
+
+    /**
+     * @param \App\Entity\Character $character
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Character $character)
+    {
+        $this->characterRepository->persist($character);
+        $this->characterRepository->flush($character);
+    }
+
+    /**
+     * @param \App\Entity\Character $character
+     *
+     * @return array
+     */
+    public function getOtherCharactersForAccount(Character $character): array
+    {
+        $otherCharacters = $this->characterRepository->findBy(['account' => $character->getAccount()]);
+
+        return array_filter($otherCharacters, function (Character $otherCharacters) use ($character) {
+            return $otherCharacters->getId() !== $character->getId();
+        });
     }
 
     /**

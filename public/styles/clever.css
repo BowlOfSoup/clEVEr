@@ -8,13 +8,13 @@ body {
 }
 
 .logo {
-    margin: 10px 0px 20px;
+    margin: 10px 0 20px;
 }
 
 .powered-by {
     text-align: center;
-    padding: 0px 22px;
-    margin: 50px 0px;
+    padding: 0 22px;
+    margin: 50px 0;
 }
 
 .powered-by-image {
@@ -37,16 +37,51 @@ a {
     text-decoration: underline;
 }
 
+.non-styled-link {
+    color: #212529 !important;
+    text-decoration: none;
+}
+.non-styled-link:hover {
+    text-decoration: none;
+}
+
 .sidebar {
     border-right: 1px solid #eee;
 }
 
-.menu-button-static {
+.btn {
+    font-size: 0.9rem;
+}
+
+.btn-group {
     width: 100%;
 }
 
-.btn {
-    font-size: 0.9rem;
+.page-title img {
+    margin-right: 10px;
+    width: 48px;
+}
+
+.page-title {
+    font-size: 130%;
+}
+
+.btn-light {
+    border: 1px dotted #ccc;
+}
+
+.editor-statusbar {
+    padding: 6px 10px !important;
+}
+
+.modal-backdrop.show:not(:last-of-type) {
+    opacity: 0 !important;
+}
+
+/* ---------- MENU STYLING ---------- */
+
+.menu-button-static {
+    width: 100%;
 }
 
 .menu-button, .menu-button-static {
@@ -62,18 +97,9 @@ a {
     width: 32px;
 }
 
-.page-title img {
-    margin-right: 10px;
-    width: 48px;
-}
+/* ---------- END MENU STYLING ---------- */
 
-.page-title {
-    font-size: 130%;
-}
-
-.modal-backdrop.show:not(:last-of-type) {
-    opacity: 0 !important;
-}
+/* ---------- CHARACTER ---------- */
 
 .character-image img {
     border-radius: 10%;
@@ -103,9 +129,9 @@ a {
     text-decoration: none;
 }
 
-.btn-light {
-    border: 1px dotted #ccc;
-}
+/* ---------- END CHARACTER ---------- */
+
+/* ---------- CORPORATION BULLETIN ---------- */
 
 .corporation-bulletin td, .corporation-bulletin th {
     border: 1px solid #ddd;
@@ -142,21 +168,15 @@ a {
     width: 100%;
 }
 
-.corporation-bulletin h1:not(:first-child) {
-    padding-top: 5px;
-}
-
-.corporation-bulletin h2:not(:first-child) {
-    padding-top: 5px;
-}
-
-.corporation-bulletin h3:not(:first-child) {
+.corporation-bulletin h1:not(:first-child),
+.corporation-bulletin h2:not(:first-child),
+.corporation-bulletin h3:not(:first-child),
+.corporation-bulletin h4:not(:first-child) {
     padding-top: 5px;
 }
 
 .corporation-bulletin h4:not(:first-child) {
     font-size: 1.2rem;
-    padding-top: 5px;
 }
 
 #bulletin-edit-editor {
@@ -188,6 +208,87 @@ a {
     display: none;
 }
 
-.editor-statusbar {
-    padding: 6px 10px !important;
+/* ---------- END CORPORATION BULLETIN ---------- */
+
+/* ---------- DROP DOWN ---------- */
+
+.dropdown-toggle, .dropdown-menu {
+    width: 300px
 }
+
+.btn-group .dropdown-image {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10%;
+}
+
+.dropdown-toggle {
+    padding-right: 50px
+}
+
+.dropdown-menu {
+    margin: 2px 0;
+    border: 1px dotted #ccc;
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-toggle .glyphicon {
+    margin-left: 5px;
+}
+
+.dropdown-header {
+    background: #ccc;
+    font-size: 14px;
+    font-weight: 700;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.btn-characters {
+    margin-bottom: 10px;
+    border: 1px dotted #ccc;
+    text-align: left;
+    padding: 10px;
+}
+.btn-characters:focus {
+    box-shadow: none;
+}
+
+.dropdown-menu button, .dropdown-menu a {
+    width: 100%;
+    text-align: left;
+    border-radius: 0;
+    padding: 10px;
+}
+
+.show .btn-characters,
+.btn-characters:hover,
+.dropdown-menu button:hover,
+.dropdown-menu a:hover {
+    background-color: #e2e6ea;
+}
+
+.dropdown-menu button:hover,
+.dropdown-menu a:hover {
+    color: #212529;
+    border-color: #dae0e5;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu li:last-of-type {
+    border-bottom: 0;
+}
+
+/* ---------- END DROP DOWN ---------- */
