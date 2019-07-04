@@ -1,0 +1,25 @@
+<div class="btn-group">
+    <button type="button" class="btn-characters btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="dropdown-image" src="https://imageserver.eveonline.com/Character/{{ character.eveId }}_128.jpg" alt="character image"/>
+        {{ character.name }}
+        <span class="glyphicon glyphicon-chevron-down"></span>
+    </button>
+
+    <ul class="dropdown-menu">
+        {% for otherCharacter in otherCharacters %}
+            <li>
+                <button type="button" class="btn btn-default character-switch" data-target="{{ path('switch_character', {'eveId': otherCharacter.eveId}) }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="dropdown-image" src="https://imageserver.eveonline.com/Character/{{ otherCharacter.eveId }}_128.jpg" alt="character image"/><span>{{ otherCharacter.name }}</span>
+                </button>
+                {#<span><img src="https://imageserver.eveonline.com/Character/{{ otherCharacter.eveId }}_128.jpg" alt="character image"/><span>{{ otherCharacter.name }}</span></span>#}
+            </li>
+        {% endfor %}
+
+        <li>
+            <a class="non-styled-link btn btn-default" href="https://login.eveonline.com/oauth/authorize/?response_type=code&redirect_uri={{ callbackUrl }}&client_id={{ clientId }}&scope={{ scope }}&state={{ uniqueState }}">
+                <img class="dropdown-image" src="{{ asset('images/character.png') }}" alt="character image"/><span>Add more characters</span>
+            </a>
+            </button>
+        </li>
+    </ul>
+</div>

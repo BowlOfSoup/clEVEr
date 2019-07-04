@@ -1,0 +1,33 @@
+<div class="corporation-bulletin">
+    {%  if isAllowedToEditTheBulletin %}
+        <div id="bulletin-edit-editor">
+            <div class="tip">
+                See <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">here</a> for a guide on how to write MarkDown.
+                <br /><br />
+
+                Size images by adding <code>width100%</code>, <code>75</code>, <code>50</code> or <code>25</code>.<br />
+                e.g. <code>![width100%](http://imageurl "title text")</code>
+            </div>
+
+            <div class="bulletin-edit-save">
+                <button type="button" id="bulletin-save-button" class="btn btn-success"
+                        data-target="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}{{ path('corporation_bulletin') }}">
+                    Save bulletin
+                </button>
+            </div>
+
+            <textarea id="bulletin-edit">{{ corporationBulletinRaw }}</textarea>
+        </div>
+        <div class="bulletin-edit-save">
+            <button type="button" class="btn btn-success">Save bulletin</button>
+        </div>
+    {% endif %}
+
+    <div class="bulletin-content">
+        {%  if corporationBulletin %}
+            {{ corporationBulletin|raw }}
+        {% else %}
+            There is currently no additional data available :)
+        {% endif %}
+    </div>
+</div>

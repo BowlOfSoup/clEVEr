@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\SpamException;
-use App\Service\Authenticator;
 use App\Service\CallbackService;
-use App\Service\CharacterService;
 use App\Service\SpamPreventionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Account;
 use App\Entity\Alliance;
 use App\Entity\Character;
 use App\Entity\Corporation;
@@ -215,6 +214,20 @@ class CharacterService
     {
         $this->characterRepository->persist($character);
         $this->characterRepository->flush($character);
+    }
+
+    /**
+     * @param \App\Entity\Character $character
+     *
+     * @return array
+     */
+    public function getOtherCharactersForAccount(Character $character): array
+    {
+        $otherCharacters = $this->characterRepository->findBy(['account' => $character->getAccount()]);
+
+        return array_filter($otherCharacters, function (Character $otherCharacters) use ($character) {
+            return $otherCharacters->getId() !== $character->getId();
+        });
     }
 
     /**

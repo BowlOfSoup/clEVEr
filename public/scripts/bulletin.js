@@ -1,7 +1,5 @@
 $(function() {
-    $(document.links).filter(function() {
-        return this.hostname !== window.location.hostname;
-    }).attr('target', '_blank');
+    $('#character-content a').attr('target', '_blank');
 
     $('.corporation-bulletin-edit-button').click(function() {
         $('#bulletin-edit-editor').show();

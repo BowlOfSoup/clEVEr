@@ -8,9 +8,7 @@ use App\Entity\Account;
 use App\Entity\Character;
 use App\Exception\AuthenticationException;
 use App\Repository\AccountRepository;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\VarDumper\VarDumper;
 
 class CallbackService
 {
