@@ -37,25 +37,19 @@ class DiscordConsumerCommand extends Command
     /** @var \App\Service\CharacterService */
     private $characterService;
 
-    /** @var \App\Model\Configuration */
-    private $configuration;
-
     /**
      * @param string $botToken
      * @param \App\Repository\CharacterRepository $characterRepository
      * @param \App\Service\CharacterService $characterService
-     * @param \App\Model\Configuration $configuration
      */
     public function __construct(
         string $botToken,
         CharacterRepository $characterRepository,
-        CharacterService $characterService,
-        Configuration $configuration
+        CharacterService $characterService
     ) {
         $this->botToken = $botToken;
         $this->characterRepository = $characterRepository;
         $this->characterService = $characterService;
-        $this->configuration = $configuration;
 
         parent::__construct();
     }
